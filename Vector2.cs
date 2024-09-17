@@ -120,6 +120,11 @@ public class Vector2 : Vector<Vector2>
         return Convert.ToSingle(Math.Sqrt(this.x * this.x + this.y * this.y));
     }
 
+    public override Vector2 Normalized()
+    {
+        return this / this.Length();
+    }
+
     public override int CompareLength(Vector2 v)
     {
         const float epsilon = 0.00001f; // 容差值

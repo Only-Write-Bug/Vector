@@ -134,6 +134,11 @@ public class Vector3 : Vector<Vector3>
         return Convert.ToSingle(Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z));
     }
 
+    public override Vector3 Normalized()
+    {
+        return this / this.Length();
+    }
+
     public override int CompareLength(Vector3 v)
     {
         const float epsilon = 0.00001f; // 容差值

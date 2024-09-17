@@ -25,6 +25,7 @@ public abstract class Vector<T>
     /// <returns></returns>
     public abstract T ParallelVector(T v);
     public abstract float Length();
+    public abstract T Normalized();
     /// <summary>
     /// 对比两向量的长度
     /// </summary>
