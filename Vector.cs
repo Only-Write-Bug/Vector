@@ -16,6 +16,14 @@ public abstract class Vector<T>
     /// <param name="scalar">标量</param>
     /// <returns></returns>
     public abstract T Multiply<T1>(T1 scalar) where T1 : struct, IConvertible;
+    public abstract float Dot(T v);
+    public abstract double Angle(T v);
+    /// <summary>
+    /// this 在v上的平行向量
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public abstract T ParallelVector(T v);
     public abstract float Length();
     /// <summary>
     /// 对比两向量的长度

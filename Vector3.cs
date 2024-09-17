@@ -39,10 +39,20 @@ public class Vector3 : Vector<Vector3>
     {
         return new Vector3(v1.x * scalar, v1.y * scalar, v1.z * scalar);
     }
+    
+    public static Vector3 operator *(Vector3 v1, double scalar)
+    {
+        return new Vector3((float)(v1.x * scalar), (float)(v1.y * scalar), (float)(v1.z * scalar));
+    }
 
     public static Vector3 operator /(Vector3 v1, float scalar)
     {
         return new Vector3(v1.x / scalar, v1.y / scalar, v1.z / scalar);
+    }
+    
+    public static Vector3 operator /(Vector3 v1, double scalar)
+    {
+        return new Vector3((float)(v1.x / scalar), (float)(v1.y / scalar), (float)(v1.z / scalar));
     }
 
     public static bool operator ==(Vector3 v1, Vector3 v2)
@@ -101,6 +111,22 @@ public class Vector3 : Vector<Vector3>
     {
         var float_scalar = Convert.ToSingle(scalar);
         return this * float_scalar;
+    }
+
+    public override float Dot(Vector3 v)
+    {
+        return this.x * v.x + this.y * v.y + this.z * v.z;
+    }
+
+    public override double Angle(Vector3 v)
+    {
+        return Math.Acos(this.Dot(v) / (this.Length() * v.Length()));
+    }
+
+    public override Vector3 ParallelVector(Vector3 v)
+    {
+        var result = v * (this.Length() * Math.Cos(this.Angle(v)) / v.Length());
+        return result;
     }
 
     public override float Length()

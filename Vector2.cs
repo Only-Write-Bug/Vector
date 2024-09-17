@@ -36,9 +36,19 @@ public class Vector2 : Vector<Vector2>
         return new Vector2(v1.x * scalar, v1.y * scalar);
     }
 
+    public static Vector2 operator *(Vector2 v1, double scalar)
+    {
+        return new Vector2((float)(v1.x * scalar), (float)(v1.y * scalar));
+    }
+
     public static Vector2 operator /(Vector2 v1, float scalar)
     {
         return new Vector2(v1.x / scalar, v1.y / scalar);
+    }
+    
+    public static Vector2 operator /(Vector2 v1, double scalar)
+    {
+        return new Vector2((float)(v1.x / scalar), (float)(v1.y / scalar));
     }
 
     public static bool operator ==(Vector2 v1, Vector2 v2)
@@ -87,6 +97,22 @@ public class Vector2 : Vector<Vector2>
     {
         var float_scalar = Convert.ToSingle(scalar);
         return this * float_scalar;
+    }
+
+    public override float Dot(Vector2 v)
+    {
+        return this.x * v.x + this.y * v.y;
+    }
+
+    public override double Angle(Vector2 v)
+    {
+        return Math.Acos(this.Dot(v) / (this.Length() * v.Length()));
+    }
+
+    public override Vector2 ParallelVector(Vector2 v)
+    {
+        var result = v * (this.Length() * Math.Cos(this.Angle(v)) / v.Length());
+        return result;
     }
 
     public override float Length()
