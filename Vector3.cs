@@ -108,14 +108,20 @@ public class Vector3 : Vector<Vector3>
         return Convert.ToSingle(Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z));
     }
 
-    public override int CompareLength(Vector3 v1)
+    public override int CompareLength(Vector3 v)
     {
         const float epsilon = 0.00001f; // 容差值
         var this_len = this.x * this.x + this.y * this.y + this.z * this.z;
-        var v1_len = v1.x * v1.x + v1.y * v1.y + v1.z * v1.z;
-        if (Math.Abs(v1_len - this_len) < epsilon)
+        var v_len = v.x * v.x + v.y * v.y + v.z * v.z;
+        if (Math.Abs(v_len - this_len) < epsilon)
             return 0;
-        return this_len - v1_len > 0 ? 1 : -1;
+        return this_len - v_len > 0 ? 1 : -1;
+    }
+
+    public override float Distance(Vector3 v)
+    {
+        return Convert.ToSingle(Math.Sqrt((v.x - this.x) * (v.x - this.x) + (v.y - this.y) * (v.y - this.y) +
+                                          (v.z - this.z) * (v.z - this.z)));
     }
 
     public override bool Equals(Vector3 v)

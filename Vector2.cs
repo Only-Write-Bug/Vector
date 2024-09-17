@@ -94,14 +94,19 @@ public class Vector2 : Vector<Vector2>
         return Convert.ToSingle(Math.Sqrt(this.x * this.x + this.y * this.y));
     }
 
-    public override int CompareLength(Vector2 v1)
+    public override int CompareLength(Vector2 v)
     {
         const float epsilon = 0.00001f; // 容差值
         var this_len = this.x * this.x + this.y * this.y;
-        var v1_len = v1.x * v1.x + v1.y * v1.y;
-        if (Math.Abs(v1_len - this_len) < epsilon)
+        var v_len = v.x * v.x + v.y * v.y;
+        if (Math.Abs(v_len - this_len) < epsilon)
             return 0;
-        return this_len - v1_len > 0 ? 1 : -1;
+        return this_len - v_len > 0 ? 1 : -1;
+    }
+
+    public override float Distance(Vector2 v)
+    {
+        return Convert.ToSingle(Math.Sqrt((v.x - this.x) * (v.x - this.x) + (v.y - this.y) * (v.y - this.y)));
     }
 
     public override bool Equals(Vector2 v)

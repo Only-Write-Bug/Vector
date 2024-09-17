@@ -21,7 +21,8 @@ public abstract class Vector<T>
     /// 对比两向量的长度
     /// </summary>
     /// <returns>0:相似 1:大于 -1:小于</returns>
-    public abstract int CompareLength(T v1);
+    public abstract int CompareLength(T v);
+    public abstract float Distance(T v);
     public abstract bool Equals(T v);
     public abstract T Clone();
     public abstract override string ToString();
